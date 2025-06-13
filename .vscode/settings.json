@@ -1,0 +1,27 @@
+{
+  // Disable auto-accept with Tab or Enter
+  "editor.acceptSuggestionOnEnter": "off",
+  "editor.tabCompletion": "off",
+  // Formatting preferences
+  "editor.formatOnSave": true,
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  // No suggestions for incomplete words
+  "editor.quickSuggestions": {
+    "other": false,
+    "comments": false,
+    "strings": false
+  },
+  // Recommended shell
+  "terminal.integrated.defaultProfile.linux": "bash",
+  //Terraform support
+  "[terraform]": {
+    "editor.defaultFormatter": "hashicorp.terraform"
+  },
+  // auto save files
+  "files.autoSave": "afterDelay",
+  "editor.snippetSuggestions": "none",
+  "editor.suggestSelection": "first",
+  "editor.acceptSuggestionOnCommitCharacter": false,
+  "editor.suggestOnTriggerCharacters": false
+}

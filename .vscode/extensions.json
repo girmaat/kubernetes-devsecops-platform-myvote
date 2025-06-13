@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "hashicorp.terraform",           // Terraform syntax + formatting
+    "redhat.vscode-yaml",            // YAML support
+    "ms-azuretools.vscode-docker",   // Dockerfile + image tools
+    "timonwong.shellcheck",          // Shell script linting
+    "oderwat.indent-rainbow",        // Visible indentation (great for YAML)
+    "esbenp.prettier-vscode",        // Formatting
+    "eamodio.gitlens",               // Git blame and history
+    "ms-kubernetes-tools.vscode-kubernetes-tools"  // K8s management
+  ]
+}
