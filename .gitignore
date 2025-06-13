@@ -67,4 +67,4 @@ logs/
 *.bak
 *~
 
-/scripts/global
+scripts/global/
