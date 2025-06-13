@@ -1,0 +1,70 @@
+# Terraform
+**/.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+terraform.tfvars
+.terraform.lock.hcl
+
+# Terraform plan files
+*.tfplan
+
+# Kubernetes
+.kube/
+*.kubeconfig
+*.yaml~       # editor backup files
+*.sealed.yaml # uncommitted sealed secret outputs
+
+# Helm
+*.tgz
+.chart-test/
+
+# VSCode
+.vscode/
+.history/
+.code-workspace
+
+# Python virtualenv & build artifacts
+__pycache__/
+*.py[cod]
+*.egg
+*.egg-info/
+dist/
+build/
+venv/
+.env
+.env.*
+
+# Docker
+*.tar
+*.log
+docker-compose.override.yml
+
+# Jenkins
+secrets/
+jenkins_home/
+jobs/
+workspace/
+*.jenkinsfile_backup
+
+# Node/JS (for frontend apps)
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# OS/system
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+logs/
+
+# Misc
+.idea/
+*.swp
+*.bak
+*~
+
+scripts/global
