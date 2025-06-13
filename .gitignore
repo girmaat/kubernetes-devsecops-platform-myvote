@@ -8,6 +8,7 @@ terraform.tfvars
 
 # Terraform plan files
 *.tfplan
+tfplan
 
 # Kubernetes
 .kube/
