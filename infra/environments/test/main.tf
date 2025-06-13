@@ -1,19 +1,22 @@
+provider "aws" {
+  region = var.region
+}
+
 module "vpc" {
-  source       = "../modules/vpc"
+  source       = "../../modules/vpc"
   cluster_name = var.cluster_name
   region       = var.region
   azs          = var.availability_zones
 }
 
 module "eks" {
-  source       = "../modules/eks"
+  source       = "../../modules/eks"
   cluster_name = var.cluster_name
-  region       = var.region
-  azs          = var.availability_zones
+  subnet_ids   = module.vpc.private_subnet_ids
 }
 
 module "eks_nodes" {
-  source           = "../modules/eks_nodes"
+  source           = "../../modules/eks-nodes"
   cluster_name     = var.cluster_name
   subnet_ids       = module.vpc.private_subnet_ids
   instance_type    = var.instance_type
