@@ -1,0 +1,111 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: myvote-cluster
+  region: us-east-1
+  version: "1.28"
+  tags:
+    project: myvote
+    environment: dev
+    owner: your-name
+    managed-by: eksctl
+    cost-center: voting-app
+    delete-after: never
+
+vpc:
+  cidr: "10.0.0.0/16"
+  autoAllocateIPv6: false
+  availabilityZones: ["us-east-1a", "us-east-1b"]
+  tags:
+    project: myvote
+    environment: dev
+    managed-by: eksctl
+    provisioner: eksctl
+
+  subnets:
+    private:
+      us-east-1a: { cidr: "10.0.1.0/24" }
+      us-east-1b: { cidr: "10.0.2.0/24" }
+    public:
+      us-east-1a: { cidr: "10.0.101.0/24" }
+      us-east-1b: { cidr: "10.0.102.0/24" }
+
+iam:
+  withOIDC: true
+  serviceAccounts:
+    - metadata:
+        name: external-dns
+        namespace: kube-system
+      attachPolicyARNs:
+        - arn:aws:iam::aws:policy/AmazonRoute53FullAccess
+    - metadata:
+        name: external-secrets
+        namespace: kube-system
+      attachPolicyARNs:
+        - arn:aws:iam::aws:policy/SecretsManagerReadWrite
+
+cloudWatch:
+  clusterLogging:
+    enableTypes:
+      ["api", "audit", "authenticator", "controllerManager", "scheduler"]
+
+addons:
+  - name: vpc-cni
+    version: latest
+    attachPolicyARNs:
+      - arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy
+  - name: coredns
+    version: latest
+  - name: kube-proxy
+    version: latest
+
+nodeGroups:
+  - name: myvote-ng
+    instanceType: t3.medium
+    desiredCapacity: 2
+    minSize: 1
+    maxSize: 3
+    capacityType: ON_DEMAND
+    volumeSize: 20
+    privateNetworking: true
+    ssh:
+      allow: true
+      publicKeyName: myvote-keypair
+    labels:
+      role: app
+      purpose: general
+    tags:
+      node-group: app
+      environment: dev
+      role: app
+      managed-by: eksctl
+    iam:
+      withAddonPolicies:
+        autoScaler: true
+        cloudWatch: true
+        albIngress: true
+
+  - name: platform-ng
+    instanceType: t3.medium
+    desiredCapacity: 1
+    minSize: 1
+    maxSize: 2
+    capacityType: ON_DEMAND
+    volumeSize: 20
+    privateNetworking: true
+    labels:
+      role: platform
+      purpose: infra
+    taints:
+      - key: dedicated
+        value: platform
+        effect: NoSchedule
+    tags:
+      node-group: platform
+      environment: dev
+      role: infra
+      managed-by: eksctl
+    iam:
+      withAddonPolicies:
+        cloudWatch: true

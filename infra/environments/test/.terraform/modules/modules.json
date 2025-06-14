@@ -1,1 +1,0 @@
-{"Modules":[{"Key":"","Source":"","Dir":"."},{"Key":"eks","Source":"../../modules/eks","Dir":"../../modules/eks"},{"Key":"eks_nodes","Source":"../../modules/eks-nodes","Dir":"../../modules/eks-nodes"},{"Key":"vpc","Source":"../../modules/vpc","Dir":"../../modules/vpc"}]}
