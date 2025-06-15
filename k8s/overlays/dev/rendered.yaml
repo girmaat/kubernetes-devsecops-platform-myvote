@@ -61,6 +61,11 @@ apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: my-vote-ui
+  labels:
+    app.kubernetes.io/name: my-vote-ui
+    helm.sh/chart: my-vote-ui-0.1.0
+    app.kubernetes.io/instance: my-vote-ui
+    app.kubernetes.io/managed-by: Helm
 spec:
   scaleTargetRef:
     apiVersion: apps/v1

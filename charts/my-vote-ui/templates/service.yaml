@@ -1,16 +1,16 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "my-vote-ui.fullname" . }}
+  name: {{ .Chart.Name }}
   labels:
-    app.kubernetes.io/name: {{ include "my-vote-ui.name" . }}
-    helm.sh/chart: {{ include "my-vote-ui.chart" . }}
+    app.kubernetes.io/name: {{ .Chart.Name }}
+    helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version }}
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
 spec:
   type: {{ .Values.service.type }}
   selector:
-    app: {{ include "my-vote-ui.name" . }}
+    app: {{ .Chart.Name }}
   ports:
     - port: {{ .Values.service.port }}
       targetPort: {{ .Values.containerPort }}
