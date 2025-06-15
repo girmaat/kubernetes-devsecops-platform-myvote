@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-vote-api
+spec:
+  selector:
+    app: my-vote-api
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
