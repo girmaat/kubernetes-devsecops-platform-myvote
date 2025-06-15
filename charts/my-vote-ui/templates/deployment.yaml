@@ -1,40 +1,37 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "my-vote-ui.fullname" . }}
+  name: {{ .Chart.Name }}
   labels:
-    app.kubernetes.io/name: {{ include "my-vote-ui.name" . }}
-    helm.sh/chart: {{ include "my-vote-ui.chart" . }}
+    app.kubernetes.io/name: {{ .Chart.Name }}
+    helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version }}
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
 spec:
-  replicas: {{ if not .Values.hpa.enabled }}{{ .Values.replicaCount | default 1 }}{{ else }}1{{ end }}
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ include "my-vote-ui.name" . }}
+      app: {{ .Chart.Name }}
   template:
     metadata:
       labels:
-        app: {{ include "my-vote-ui.name" . }}
+        app: {{ .Chart.Name }}
     spec:
       containers:
-        - name: {{ include "my-vote-ui.name" . }}
+        - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - containerPort: {{ .Values.containerPort }}
-          
-          {{- if .Values.livenessProbe }}
           livenessProbe:
-{{ toYaml .Values.livenessProbe | indent 12 }}
-          {{- end }}
-
-          {{- if .Values.readinessProbe }}
+            httpGet:
+              path: /
+              port: {{ .Values.containerPort }}
+            initialDelaySeconds: 10
+            timeoutSeconds: 1
           readinessProbe:
-{{ toYaml .Values.readinessProbe | indent 12 }}
-          {{- end }}
-
-          {{- if .Values.resources }}
-          resources:
-{{ toYaml .Values.resources | indent 12 }}
-          {{- end }}
+            httpGet:
+              path: /
+              port: {{ .Values.containerPort }}
+            initialDelaySeconds: 5
+            timeoutSeconds: 1
