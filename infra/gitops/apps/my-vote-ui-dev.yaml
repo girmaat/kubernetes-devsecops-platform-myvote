@@ -6,9 +6,12 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/girmaat/kubernetes-devsecops-platform-myvote.git
-    targetRevision: main
-    path: k8s/base/my-vote-ui
+    repoURL: https://github.com/<your-username>/kubernetes-devsecops-platform-myvote.git
+    targetRevision: HEAD
+    path: charts/my-vote-ui
+    helm:
+      valueFiles:
+        - values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: myvote-dev
@@ -16,3 +19,5 @@ spec:
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
