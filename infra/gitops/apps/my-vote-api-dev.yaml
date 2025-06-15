@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/girmaat/kubernetes-devsecops-platform-myvote.git
     targetRevision: main
-    path: k8s/base/my-vote-api
+    path: k8s/overlays/dev
   destination:
     server: https://kubernetes.default.svc
     namespace: myvote-dev
