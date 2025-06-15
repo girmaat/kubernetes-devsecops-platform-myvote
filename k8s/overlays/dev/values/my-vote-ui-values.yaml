@@ -1,0 +1,10 @@
+replicaCount: 2
+
+image:
+  tag: dev-latest
+
+service:
+  type: ClusterIP
+  port: 80
+
+containerPort: 80
