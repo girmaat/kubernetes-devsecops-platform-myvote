@@ -1,2 +1,3 @@
 resources:
   - namespace-myvote-dev.yaml
+  - namespace-myvote-staging.yaml
