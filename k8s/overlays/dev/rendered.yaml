@@ -39,7 +39,7 @@ spec:
     spec:
       containers:
         - name: my-vote-ui
-          image: "nginx:dev-latest"
+          image: "nginx:stable"
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
