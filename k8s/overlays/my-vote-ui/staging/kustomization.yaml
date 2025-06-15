@@ -5,5 +5,5 @@ resources:
   - rendered.yaml
 
 commonLabels:
-  env: dev
+  env: staging
   app.kubernetes.io/managed-by: kustomize
