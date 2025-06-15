@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: nginx  # ← replace with actual UI image
+  repository: ghcr.io/girmaat/my-vote-ui  
   tag: latest
   pullPolicy: IfNotPresent
 
