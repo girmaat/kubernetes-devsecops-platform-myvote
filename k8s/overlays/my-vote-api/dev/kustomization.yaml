@@ -1,0 +1,6 @@
+resources:
+  - rendered.yaml
+
+commonLabels:
+  env: dev
+  app.kubernetes.io/managed-by: kustomize
