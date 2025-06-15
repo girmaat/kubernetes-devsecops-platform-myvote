@@ -1,0 +1,11 @@
+{
+  "appName": "my-vote-api",
+  "userGivenName": "my-vote-api",
+  "destNamespace": "myvote-dev",
+  "destServer": "https://kubernetes.default.svc",
+  "srcPath": "apps/my-vote-api/overlays/default",
+  "srcRepoURL": "https://github.com/girmaat/kubernetes-devsecops-platform-myvote.git",
+  "srcTargetRevision": "",
+  "labels": null,
+  "annotations": null
+}
