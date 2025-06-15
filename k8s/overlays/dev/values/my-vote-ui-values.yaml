@@ -1,6 +1,7 @@
 replicaCount: 2
 
 image:
+  repository: nginx
   tag: dev-latest
 
 service:

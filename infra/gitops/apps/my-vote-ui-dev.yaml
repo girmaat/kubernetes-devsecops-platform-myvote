@@ -7,8 +7,8 @@ spec:
   project: default
   source:
     repoURL: https://github.com/girmaat/kubernetes-devsecops-platform-myvote.git
-    targetRevision: HEAD
-    path: charts/my-vote-ui
+    targetRevision: main
+    path: k8s/overlays/dev
     helm:
       valueFiles:
         - values.yaml
