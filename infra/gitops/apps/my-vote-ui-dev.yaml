@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: my-vote-ui-dev
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/girmaat/kubernetes-devsecops-platform-myvote.git
+    targetRevision: main
+    path: k8s/base/my-vote-ui
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: myvote-dev
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
