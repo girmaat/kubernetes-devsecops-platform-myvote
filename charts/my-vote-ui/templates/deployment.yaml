@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "my-vote-ui.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "my-vote-ui.name" . }}
+    helm.sh/chart: {{ include "my-vote-ui.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  replicas: {{ if not .Values.hpa.enabled }}{{ .Values.replicaCount | default 1 }}{{ else }}1{{ end }}
+  selector:
+    matchLabels:
+      app: {{ include "my-vote-ui.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "my-vote-ui.name" . }}
+    spec:
+      containers:
+        - name: {{ include "my-vote-ui.name" . }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.containerPort }}
+          
+          {{- if .Values.livenessProbe }}
+          livenessProbe:
+{{ toYaml .Values.livenessProbe | indent 12 }}
+          {{- end }}
+
+          {{- if .Values.readinessProbe }}
+          readinessProbe:
+{{ toYaml .Values.readinessProbe | indent 12 }}
+          {{- end }}
+
+          {{- if .Values.resources }}
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
+          {{- end }}
