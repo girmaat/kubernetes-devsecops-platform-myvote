@@ -39,7 +39,7 @@ spec:
     spec:
       containers:
         - name: my-vote-ui
-          image: "ghcr.io/girmaat/my-vote-ui:dev-latest"
+          image: "nginx:dev-latest"
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
