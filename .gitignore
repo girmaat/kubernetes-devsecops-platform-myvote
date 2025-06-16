@@ -66,6 +66,3 @@ logs/
 .idea/
 *.swp
 *.bak
-*~
-
-scripts/global/

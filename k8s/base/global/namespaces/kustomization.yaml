@@ -1,3 +1,4 @@
 resources:
   - namespace-myvote-dev.yaml
-  - namespace-myvote-staging.yaml
+  - namespace-myvote-staging.yaml  
+  - argocd-project-default.yaml
