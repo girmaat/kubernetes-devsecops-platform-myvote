@@ -51,7 +51,7 @@ spec:
             timeoutSeconds: 1
           readinessProbe:
             httpGet:
-              path: /readyzclear
+              path: /
               
               port: 80
             initialDelaySeconds: 5
