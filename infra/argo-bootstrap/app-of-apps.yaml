@@ -4,20 +4,17 @@ metadata:
   name: app-of-apps
   namespace: argocd
 spec:
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
   project: default
-
   source:
     repoURL: https://github.com/girmaat/kubernetes-devsecops-platform-myvote.git
-    targetRevision: HEAD
+    targetRevision: main
     path: k8s/gitops/apps
-
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: argocd
-
+    directory:
+      recurse: true
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
