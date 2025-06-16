@@ -2,11 +2,10 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
-  - app-of-apps.yaml
-  - argocd-bootstrap.yaml
-  - my-vote-api-dev.yaml
-  - my-vote-ui-dev.yaml
-  - my-vote-api-staging.yaml
-  - my-vote-ui-staging.yaml
-  - myvote-namespaces.yaml
+  - my-vote-api-staging
+  - my-vote-ui-staging
+  - my-vote-api-dev
+  - my-vote-ui-dev
+  - argocd-bootstrap
+  - myvote-namespaces
 
