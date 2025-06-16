@@ -1,2 +1,2 @@
 resources:
-  - argocd-bootstrap.yaml
+  - ../../../base/global/namespaces
