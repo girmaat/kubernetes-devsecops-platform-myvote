@@ -1,0 +1,79 @@
+---
+# Source: my-vote-api/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-vote-api
+spec:
+  type: ClusterIP
+  selector:
+    app: my-vote-api
+  ports:
+    - port: 80
+      targetPort: 80
+---
+# Source: my-vote-api/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-vote-api
+  labels:
+    app.kubernetes.io/name: my-vote-api
+    helm.sh/chart: my-vote-api-0.1.0
+    app.kubernetes.io/instance: my-vote-api
+    app.kubernetes.io/managed-by: Helm
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: my-vote-api
+  template:
+    metadata:
+      labels:
+        app: my-vote-api
+    spec:
+      containers:
+        - name: my-vote-api
+          image: "nginx:stable"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 10
+            timeoutSeconds: 2
+
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 5
+            timeoutSeconds: 2
+---
+# Source: my-vote-api/templates/hpa.yaml
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: my-vote-api
+  labels:
+    app.kubernetes.io/name: my-vote-api
+    helm.sh/chart: my-vote-api-0.1.0
+    app.kubernetes.io/instance: my-vote-api
+    app.kubernetes.io/managed-by: Helm
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: my-vote-api
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 60
