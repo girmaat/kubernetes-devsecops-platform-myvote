@@ -31,7 +31,8 @@ spec:
             timeoutSeconds: 1
           readinessProbe:
             httpGet:
-              path: /
+              path: /readyz
+              
               port: {{ .Values.containerPort }}
             initialDelaySeconds: 5
             timeoutSeconds: 1
