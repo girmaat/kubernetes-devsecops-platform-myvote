@@ -18,7 +18,10 @@ kind: Deployment
 metadata:
   name: my-vote-api
   labels:
-    app: my-vote-api
+    app.kubernetes.io/name: my-vote-api
+    helm.sh/chart: my-vote-api-0.1.0
+    app.kubernetes.io/instance: my-vote-api
+    app.kubernetes.io/managed-by: Helm
 spec:
   replicas: 3
   selector:
@@ -35,14 +38,20 @@ spec:
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
+
           livenessProbe:
             httpGet:
-              path: 
-              port: 
+              path: /healthz
+              port: 80
+            initialDelaySeconds: 10
+            timeoutSeconds: 2
+
           readinessProbe:
             httpGet:
-              path: 
-              port:
+              path: /readyz
+              port: 80
+            initialDelaySeconds: 5
+            timeoutSeconds: 2
 ---
 # Source: my-vote-api/templates/hpa.yaml
 apiVersion: autoscaling/v2
