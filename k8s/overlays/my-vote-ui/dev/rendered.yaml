@@ -52,6 +52,7 @@ spec:
           readinessProbe:
             httpGet:
               path: /
+              
               port: 80
             initialDelaySeconds: 5
             timeoutSeconds: 1
