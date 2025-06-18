@@ -1,0 +1,59 @@
+# Core
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: argocd-server
+  namespace: argocd
+  labels:
+    log-collect: "enabled"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: argocd-repo-server
+  namespace: argocd
+  labels:
+    log-collect: "enabled"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: argocd-application-controller
+  namespace: argocd
+  labels:
+    log-collect: "enabled"
+
+# Optional Components
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: argocd-notifications-controller
+  namespace: argocd
+  labels:
+    log-collect: "enabled"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: argocd-dex-server
+  namespace: argocd
+  labels:
+    log-collect: "enabled"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: argocd-application-set-controller
+  namespace: argocd
+  labels:
+    log-collect: "enabled"
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: argocd-redis
+  namespace: argocd
+  labels:
+    log-collect: "enabled"
