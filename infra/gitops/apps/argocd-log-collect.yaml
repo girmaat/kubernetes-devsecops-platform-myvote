@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/<your-org>/kubernetes-devsecops-platform-myvote.git
+    repoURL: https://github.com/girmaat/kubernetes-devsecops-platform-myvote.git
     targetRevision: main
     path: infra/argo-bootstrap/argocd-label-overlay
     directory:
