@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argocd-bootstrap
+  name: app-of-apps
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://github.com/girmaat/kubernetes-devsecops-platform-myvote.git
     targetRevision: main
-    path: k8s/overlays/argocd/prod
+    path: k8s/gitops/apps
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
