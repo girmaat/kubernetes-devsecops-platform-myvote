@@ -1,0 +1,10 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ../../../infra/gitops/apps/my-vote-api-dev.yaml
+  - ../../../infra/gitops/apps/my-vote-ui-dev.yaml
+  - ../../../infra/gitops/apps/my-vote-api-staging.yaml
+  - ../../../infra/gitops/apps/my-vote-ui-staging.yaml
+  - ../../../infra/gitops/apps/myvote-namespaces.yaml
+  - ../../../infra/gitops/apps/argocd-bootstrap.yaml
