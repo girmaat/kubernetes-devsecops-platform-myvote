@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: https://github.com/girmaat/kubernetes-devsecops-platform-myvote.git
     targetRevision: HEAD
-    path: infra/gitops/apps
+    path: k8s/gitops/apps
 
   destination:
     server: https://kubernetes.default.svc
