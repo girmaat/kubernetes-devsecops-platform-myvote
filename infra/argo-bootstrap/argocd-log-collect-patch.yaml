@@ -1,5 +1,4 @@
-# Core
----
+# Patch for argocd-server
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -8,6 +7,7 @@ metadata:
   labels:
     log-collect: "enabled"
 ---
+# Patch for argocd-repo-server
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -16,6 +16,7 @@ metadata:
   labels:
     log-collect: "enabled"
 ---
+# Patch for argocd-application-controller
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -23,17 +24,8 @@ metadata:
   namespace: argocd
   labels:
     log-collect: "enabled"
-
-# Optional Components
 ---
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: argocd-notifications-controller
-  namespace: argocd
-  labels:
-    log-collect: "enabled"
----
+# Optional: Patch for argocd-dex-server
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -42,6 +34,16 @@ metadata:
   labels:
     log-collect: "enabled"
 ---
+# Optional: Patch for argocd-notifications-controller
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: argocd-notifications-controller
+  namespace: argocd
+  labels:
+    log-collect: "enabled"
+---
+# Optional: Patch for argocd-application-set-controller
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -50,6 +52,7 @@ metadata:
   labels:
     log-collect: "enabled"
 ---
+# Optional: Patch for argocd-redis (StatefulSet)
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
