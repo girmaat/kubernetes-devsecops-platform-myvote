@@ -23,5 +23,37 @@
   "editor.snippetSuggestions": "none",
   "editor.suggestSelection": "first",
   "editor.acceptSuggestionOnCommitCharacter": false,
-  "editor.suggestOnTriggerCharacters": false
+  "editor.suggestOnTriggerCharacters": false,
+  "yaml.validate": true,
+  "yaml.format.enable": true,
+  "yaml.schemaStore.enable": true,
+  "yaml.schemas": {
+    "https://json.schemastore.org/kustomization.json": "*/kustomization.yaml",
+    "https://json.schemastore.org/github-workflow.json": ".github/workflows/*"
+  },
+  "[helm]": {
+    "editor.tabSize": 2,
+    "editor.formatOnSave": false
+  },
+  "yaml.customTags": [
+    "tag:yaml.org,2002:map",
+    "tag:yaml.org,2002:str",
+    "tag:yaml.org,2002:bool",
+    "!Ref", "!Sub", "!GetAtt",
+    "!ImportValue",
+    "!Join",
+    "!Select",
+    "!Split",
+    "!If",
+    "!Equals",
+    "!Not",
+    "!And",
+    "!Or"
+  ],
+  "files.associations": {
+    "*.tpl": "helm",
+    "*.gotmpl": "helm",
+    "*.yaml": "yaml",
+    "*.yml": "yaml"
+  }
 }

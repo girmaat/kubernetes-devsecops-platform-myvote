@@ -1,3 +1,4 @@
+# Patch for argocd-server
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -8,7 +9,10 @@ spec:
     metadata:
       labels:
         log-collect: "enabled"
+
 ---
+
+# Patch for argocd-repo-server
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -19,7 +23,10 @@ spec:
     metadata:
       labels:
         log-collect: "enabled"
+
 ---
+
+# Patch for argocd-application-controller
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -30,11 +37,44 @@ spec:
     metadata:
       labels:
         log-collect: "enabled"
+
 ---
+
+# Optional patches (include only if these exist in your cluster)
+
+# Patch for argocd-dex-server
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: argocd-dex-server
+  namespace: argocd
+spec:
+  template:
+    metadata:
+      labels:
+        log-collect: "enabled"
+
+---
+
+# Patch for argocd-notifications-controller
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: argocd-notifications-controller
+  namespace: argocd
+spec:
+  template:
+    metadata:
+      labels:
+        log-collect: "enabled"
+
+---
+
+# Patch for argocd-application-set-controller
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: argocd-application-set-controller
   namespace: argocd
 spec:
   template:

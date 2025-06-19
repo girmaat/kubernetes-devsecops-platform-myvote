@@ -27,14 +27,14 @@ hpa:
 
 readinessProbe:
   httpGet:
-    path: /readyz
+    path: /
     port: 80
   initialDelaySeconds: 5
   timeoutSeconds: 2
 
 livenessProbe:
   httpGet:
-    path: /healthz
+    path: /
     port: 80
   initialDelaySeconds: 10
   timeoutSeconds: 2

@@ -3,7 +3,3 @@ kind: Kustomization
 
 resources:
   - rendered.yaml
-
-commonLabels:
-  env: staging
-  app.kubernetes.io/managed-by: kustomize

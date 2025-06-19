@@ -23,17 +23,16 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy | default "IfNotPresent" }}
           ports:
             - containerPort: {{ .Values.containerPort }}
-
           livenessProbe:
             httpGet:
-              path: /healthz
+              path: /
               port: {{ .Values.containerPort }}
             initialDelaySeconds: 10
             timeoutSeconds: 2
 
           readinessProbe:
             httpGet:
-              path: /readyz
+              path: /
               port: {{ .Values.containerPort }}
             initialDelaySeconds: 5
             timeoutSeconds: 2
